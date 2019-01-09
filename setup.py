@@ -22,5 +22,5 @@ setup(
             'vector_controller=vector_controller.__main__:main',
         ],
     },
-
+    install_requires=['anki_vector', 'flask', 'Pillow'],
 )
