@@ -17,4 +17,10 @@ setup(
     author='Kodey Converse',
     author_email='kodey@krconv.com',
     packages=find_packages(exclude=['tests']),
+    entry_points={
+        'console_scripts': [
+            'vector_controller=vector_controller.__main__:main',
+        ],
+    },
+
 )

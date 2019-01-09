@@ -23,7 +23,7 @@ import io
 import json
 import sys
 import time
-from lib import flask_helpers
+from .lib import flask_helpers
 
 import anki_vector
 from anki_vector import util
@@ -671,12 +671,3 @@ def run():
         robot.behavior.drive_off_charger()
 
         flask_helpers.run_flask(flask_app)
-
-
-if __name__ == '__main__':
-    try:
-        run()
-    except KeyboardInterrupt as e:
-        pass
-    except anki_vector.exceptions.VectorConnectionException as e:
-        sys.exit("A connection error occurred: %s" % e)
