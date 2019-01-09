@@ -305,6 +305,11 @@ class RemoteControlVector:
 
         self.vector.motors.set_wheel_motors(l_wheel_speed, r_wheel_speed, l_wheel_speed * 4, r_wheel_speed * 4)
 
+    def set_freeplay(self, enabled):
+        connection = self.vector.conn
+
+        connection.release_control() if enabled else connection.request_control()
+        
 
 def get_anim_sel_drop_down(selectorIndex):
     html_text = """<select onchange="handleDropDownSelect(this)" name="animSelector""" + str(selectorIndex) + """">"""
@@ -607,8 +612,7 @@ def handle_setFreeplayEnabled():
     message = json.loads(request.data.decode("utf-8"))
     if flask_app.remote_control_vector:
         isFreeplayEnabled = message['isFreeplayEnabled']
-        connection = flask_app.remote_control_vector.vector.conn
-        connection.update(enabled=(not isFreeplayEnabled))
+        flask_app.remote_control_vector.set_freeplay(isFreeplayEnabled)
     return ""
 
 
