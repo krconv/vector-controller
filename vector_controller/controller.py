@@ -309,7 +309,7 @@ class RemoteControlVector:
         connection = self.vector.conn
 
         connection.release_control() if enabled else connection.request_control()
-        
+
 
 def get_anim_sel_drop_down(selectorIndex):
     html_text = """<select onchange="handleDropDownSelect(this)" name="animSelector""" + str(selectorIndex) + """">"""
@@ -468,6 +468,12 @@ def handle_index_page():
                     var hasShift = (e.shiftKey ? 1 : 0)
                     var hasCtrl  = (e.ctrlKey  ? 1 : 0)
                     var hasAlt   = (e.altKey   ? 1 : 0)
+                    var isRepeat = (e.repeat   ? 1 : 0)
+
+                    if (isRepeat)
+                    {
+                        return;
+                    }
 
                     if (actionType=="keyup")
                     {
